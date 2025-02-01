@@ -1,0 +1,50 @@
+/* Main Navbar Styles */
+.navbar {
+    background-color: #2f2f2f; /* Darker background for the navbar */
+    padding: 15px 20px; /* Add some padding for spacing */
+  }
+  
+  .navbar-brand {
+    color: #f5a623 !important; /* Gold/orange color for the logo */
+    font-size: 24px; /* Larger font size for the logo */
+    font-weight: bold; /* Bold text for emphasis */
+    letter-spacing: 1px; /* Slight letter-spacing for logo */
+    text-transform: uppercase; /* Uppercase letters for a clean look */
+  }
+  
+  .navbar-toggler-icon {
+    background-color: #f5a623; /* Gold color for the toggler icon */
+  }
+  
+  /* Navbar links (nav items) */
+  .navbar-nav .nav-item .nav-link {
+    color: #ccc; /* Soft gray for text */
+    font-size: 18px; /* Adjust font size */
+    text-transform: uppercase; /* Uppercase links for consistency */
+    padding: 10px 15px; /* Add padding around the links */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition for hover effect */
+    border-radius: 5px; /* Optional: rounded corners for the hover effect */
+  }
+  
+  /* Hover effect for links */
+  .navbar-nav .nav-item .nav-link:hover {
+    background-color: #f5a623; /* Gold/orange background on hover */
+    color: #2f2f2f; /* Dark text on hover */
+  }
+  
+  /* Active Link (When the link is active) */
+  .navbar-nav .nav-item .nav-link.active {
+    background-color: #f5a623; /* Gold for active link */
+    color: #2f2f2f; /* Dark text for active link */
+  }
+  
+  /* For the responsive menu (collapse section) */
+  @media (max-width: 991px) {
+    .navbar-nav {
+      text-align: center; /* Center the links on smaller screens */
+    }
+    .navbar-nav .nav-item {
+      margin-bottom: 10px; /* Space between links in the dropdown */
+    }
+  }
+  

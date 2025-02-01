@@ -1,0 +1,63 @@
+/* Background Style for Category Page */
+.categories-container {
+    background: linear-gradient(135deg, rgba(255, 208, 0, 0.993), rgba(0, 255, 191, 0.8)); /* Gradient background */
+    background-size: cover; /* Cover the entire container */
+    padding: 50px 20px; /* Add some padding around the content */
+    min-height: 100vh; /* Ensure the page takes at least the full height of the screen */
+    color: black; /* White text color for better contrast */
+  }
+  
+  .categories-list {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    gap: 20px; /* Adds spacing between category cards */
+  }
+  
+  .category-card {
+    width: 250px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent background for cards */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for the cards */
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .category-card:hover {
+    transform: scale(1.05); /* Scale effect on hover */
+  }
+  
+  .category-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .category-button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: black;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .category-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the Link */
+  .category-link {
+    text-decoration: none;
+  }
+  
