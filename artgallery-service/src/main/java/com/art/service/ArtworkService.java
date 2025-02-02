@@ -16,4 +16,5 @@ public interface ArtworkService {
 	    String updateArtwork(Long artId, ArtworkDto artworkDTO, MultipartFile image);
 		//String addArtwork(String title, Long artistId, Long categoryId, double price, boolean availability,
 		//		String filePath);
+		List<ArtworkDto> getArtworksByCategory(long categoryId);
 }
