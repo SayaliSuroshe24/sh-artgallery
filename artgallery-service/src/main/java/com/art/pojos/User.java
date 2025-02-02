@@ -17,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 public class User {
 	  @Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,14 +31,10 @@ public class User {
 	    private Role role;
 	    private Date dateCreated;
 	    
-	    
-	    
 
 	    public Long getUserId() {
 			return userId;
 		}
-
-
 
 
 		public void setUserId(Long userId) {
@@ -45,13 +42,9 @@ public class User {
 		}
 
 
-
-
 		public String getName() {
 			return name;
 		}
-
-
 
 
 		public void setName(String name) {
@@ -59,13 +52,9 @@ public class User {
 		}
 
 
-
-
 		public String getEmail() {
 			return email;
 		}
-
-
 
 
 		public void setEmail(String email) {
@@ -73,13 +62,9 @@ public class User {
 		}
 
 
-
-
 		public String getPassword() {
 			return password;
 		}
-
-
 
 
 		public void setPassword(String password) {
@@ -87,13 +72,9 @@ public class User {
 		}
 
 
-
-
 		public String getPhoneNo() {
 			return phoneNo;
 		}
-
-
 
 
 		public void setPhoneNo(String phoneNo) {
@@ -101,13 +82,9 @@ public class User {
 		}
 
 
-
-
 		public String getShippingNo() {
 			return shippingNo;
 		}
-
-
 
 
 		public void setShippingNo(String shippingNo) {
@@ -115,13 +92,9 @@ public class User {
 		}
 
 
-
-
 		public Role getRole() {
 			return role;
 		}
-
-
 
 
 		public void setRole(Role role) {
@@ -129,20 +102,14 @@ public class User {
 		}
 
 
-
-
 		public Date getDateCreated() {
 			return dateCreated;
 		}
 
 
-
-
 		public void setDateCreated(Date dateCreated) {
 			this.dateCreated = dateCreated;
 		}
-
-
 
 
 		public enum Role {

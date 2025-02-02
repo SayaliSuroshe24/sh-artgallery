@@ -10,7 +10,7 @@ export default function ArtWorkFormComponent() {
         artistId: '',
         price: '',
         availability: '',
-        catId: '',
+        categoryId: '',
         image: null // This will hold the file data
     });
 
@@ -20,7 +20,7 @@ export default function ArtWorkFormComponent() {
         artistId: '',
         price: '',
         availability: '',
-        catId: '',
+        categoryId: '',
         image: ''
     });
 
@@ -42,21 +42,47 @@ export default function ArtWorkFormComponent() {
         } else {
             // Prepare the FormData for image and artwork details
             const formData = new FormData();
-            formData.append('artworkDTO', JSON.stringify({
+            // formData.append('artworkDTO', JSON.stringify({
+            //     artId: parseInt(formdetails.artId),
+            //     title: formdetails.title,
+            //     artistId: parseInt(formdetails.artistId),
+            //     price: parseFloat(formdetails.price),
+            //     availability: formdetails.availability,
+            //     categoryId: parseInt(formdetails.categoryId)
+            // }));
+            // formData.append('image', formdetails.image); // Append the image file
+
+            if(typeof(formdetails.image) == 'string'){
+                // Convert Base64 to Blob
+                const byteCharacters = atob(formdetails.image);
+                const byteNumbers = new Array(byteCharacters.length).fill(null).map((_, i) => byteCharacters.charCodeAt(i));
+                const byteArray = new Uint8Array(byteNumbers);
+                const imageBlob = new Blob([byteArray], { type: "image/png" });
+
+                // Convert Blob to File
+                formdetails.image = new File([imageBlob], "image.png", { type: "image/png" });
+            }
+
+            formData.append('image', formdetails.image); // Append the image file
+
+            // Create a Blob from the JSON string
+            const jsonBlob = new Blob([JSON.stringify({
                 artId: parseInt(formdetails.artId),
                 title: formdetails.title,
                 artistId: parseInt(formdetails.artistId),
                 price: parseFloat(formdetails.price),
                 availability: formdetails.availability,
-                catId: parseInt(formdetails.catId)
-            }));
-            formData.append('image', formdetails.image); // Append the image file
+                categoryId: parseInt(formdetails.categoryId)
+            })], { type: "application/json" });
+
+
+            formData.append("artworkDto", jsonBlob, "artworkDto.json");
 
             // Call the service to add artwork
-            ArtWorkService.updateArtWork(formData)
+            ArtWorkService.updateArtWork(formdetails.artId, formData)
                 .then((result) => {
                     console.log(result);
-                    navigate("/artwork"); // Redirect to artwork list after submission
+                    navigate("/artworks"); // Redirect to artwork list after submission
                 })
                 .catch((err) => {
                     console.log(err);
@@ -123,14 +149,16 @@ export default function ArtWorkFormComponent() {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="catId">Category Id</label>
-                    <input type="text" className="form-control" id="catId" name='catId'
+                    <label htmlFor="categoryId">Category Id</label>
+                    <input type="text" className="form-control" id="categoryId" name='categoryId'
                         onChange={handlechange}
-                        value={formdetails.catId} />
+                        value={formdetails.categoryId} />
                 </div>
 
                 <div className="form-group">
                     <label htmlFor="image">Image</label>
+                    <br/>
+                    <img src={`data:image/png;base64,${formdetails.image}`} alt="Byte Image" width="100" height="100" />
                     <input type="file" className="form-control" id="image" name='image' accept="image/*"
                         onChange={handlechange} />
                     <p>{formerrors.image}</p>

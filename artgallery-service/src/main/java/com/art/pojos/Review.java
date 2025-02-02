@@ -17,6 +17,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,4 +31,41 @@ public class Review {
     private int rating;
     private String comment;
     private Date reviewDate;
+	public Long getReviewId() {
+		return reviewId;
+	}
+	public void setReviewId(Long reviewId) {
+		this.reviewId = reviewId;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
+	public Artwork getArtwork() {
+		return artwork;
+	}
+	public void setArtwork(Artwork artwork) {
+		this.artwork = artwork;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public Date getReviewDate() {
+		return reviewDate;
+	}
+	public void setReviewDate(Date reviewDate) {
+		this.reviewDate = reviewDate;
+	}
+    
 }
