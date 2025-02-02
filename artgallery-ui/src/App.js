@@ -23,11 +23,16 @@ import Decor from './pages/Decor'; // Similarly for Decor
 // import "./components/style.css"; // Import global CSS
 import ImageSlider from "./components/ImageSlider";
 import "./styles1.css"; // Import global CSS
+import PaintingsList from './pages/PaintingsList';
+import CartPage from './pages/CartPage';
+import BuyNowPage from './pages/BuyNowPage';
+import { CartProvider } from './pages/CartContext';
 
 
 function App() {
   return (
     <div>
+      <CartProvider>
     <Router>
      <Header></Header>
       <MainNavBar />
@@ -42,7 +47,9 @@ function App() {
         <Route path="/decor" component={Decor} /> */}
         {/* Define other routes as needed */}
         <Route path="/" element={<Category />} />
-        <Route path="/painting" element={<PaintingPage />} />
+        <Route path="/painting" element={<PaintingsList />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/buy/:id" element={<BuyNowPage />} />
         <Route path="/sculpture" element={<Sculpture />} />
         <Route path="/decor" element={<Decor />} />
 
@@ -65,7 +72,9 @@ function App() {
         <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
+    </CartProvider>
     <Footer></Footer>
+    
     </div>
   );
 }

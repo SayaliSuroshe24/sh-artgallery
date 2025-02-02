@@ -37,20 +37,6 @@ public class ArtworkServiceImpl implements ArtworkService {
 
     @Override
     public List<ArtworkDto> getAllArtworks() {
-//    	 return artworkRepository.findAll().stream()
-//    	                .map(user -> mapper.map(user, ArtworkDto.class))
-//    	                .collect(Collectors.toList());
-//    	 
-//    	 /*
-//    	 / * return artworks.stream()
-//                .map(artwork -> new ArtworkDTO(
-//                        artwork.getId(),
-//                        artwork.getArtist() != null ? artwork.getArtist().getId() : null,
-//                        artwork.getCategory() != null ? artwork.getCategory().getId() : null
-//                ))
-//                .collect(Collectors.toList());
-//    	  */
-//    	 
     	return artworkRepository.findAll().stream()
     	        .map(artwork -> {
     	            ArtworkDto artworkDto = mapper.map(artwork, ArtworkDto.class);
@@ -65,65 +51,20 @@ public class ArtworkServiceImpl implements ArtworkService {
     	 
     }
     
-    
-	/*
-	 * public String addArtwork(ArtworkDto artworkDto) throws IOException { // Fetch
-	 * the artist and category from their respective repositories Artist artist =
-	 * artistRepository.findById(artworkDto.getArtistId()) .orElseThrow(() -> new
-	 * RuntimeException("Artist not found"));
-	 * 
-	 * Category category = categoryRepository.findById(artworkDto.getCategoryId())
-	 * .orElseThrow(() -> new RuntimeException("Category not found"));
-	 * 
-	 * // Save the file (image) and get the file path or URL String filePath =
-	 * fileStorageService.saveFile(artworkDto.getImageUrl());
-	 * 
-	 * // Create a new Artwork object Artwork artwork = new Artwork();
-	 * artwork.setTitle(artworkDto.getTitle()); artwork.setArtist(artist);
-	 * artwork.setPrice(artworkDto.getPrice());
-	 * artwork.setAvailability(artworkDto.isAvailability());
-	 * artwork.setImageUrl(filePath); // Store the file path/URL in the artwork
-	 * entity artwork.setCategory(category);
-	 * 
-	 * // Save the artwork object to the database artworkRepository.save(artwork);
-	 * 
-	 * return "Artwork uploaded successfully!"; }
-	 */	
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-//        public void saveArtworkWithFilePath(String title, Long artistId, Long categoryId, String fileName) {
-//            Artwork artwork = new Artwork();
-//            artwork.setTitle(title);
-//            artwork.setArtistId(artistId);
-//            artwork.setCategoryId(categoryId);
-//            artwork.setImagePath(fileName); // Save the file path
-//
-//            artworkRepository.save(artwork);
-//        }
-//    }
+	@Override
+	public List<ArtworkDto> getArtworksByCategory(long categoryId) {
+		return artworkRepository.findByCategoryCategoryId(categoryId).stream()
+    	        .map(artwork -> {
+    	            ArtworkDto artworkDto = mapper.map(artwork, ArtworkDto.class);
+    	            // Set artistId
+    	            artworkDto.setArtistId(artwork.getArtist().getArtistId()); // Assuming getArtist() returns the artist entity and getId() retrieves the ID
+    	            // Set categoryId
+    	            artworkDto.setCategoryId(artwork.getCategory().getCategoryId()); // Assuming getCategory() returns the category entity and getId() retrieves the ID
+    	            
+    	            return artworkDto;
+    	        })
+    	        .collect(Collectors.toList());
+	}
     	
     @Override
     public String addArtwork(ArtworkDto artworkDTO,MultipartFile file) throws IOException {  
@@ -225,9 +166,4 @@ public class ArtworkServiceImpl implements ArtworkService {
 		}
 		throw new ResourceNotFoundException("Artwork doesn't exist!");
 	}
-
-
-	
-
-	
 }

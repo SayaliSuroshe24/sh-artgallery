@@ -19,7 +19,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Data
 public class User {
-	  @Id
+	  	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    private Long userId;
 	    private String name;
