@@ -23,10 +23,6 @@ public class ArtistController {
     @Autowired
     private ArtistService artistService;
 
-    /**
-     * Get mapping to get all artists from DB
-     * @return
-     */
     @GetMapping
     public ResponseEntity<List<ArtistDto>> getAllArtists() {
         return ResponseEntity.ok(artistService.getAllArtists());

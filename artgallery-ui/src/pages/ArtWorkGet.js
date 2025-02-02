@@ -83,7 +83,7 @@ export default function ArtWorkAdd() {
             <th scope="col">CategoryId</th>
             <th scope="col">Price</th>
             <th scope="col">Availability</th>
-            <th scope="col">ImageUrl</th>
+            <th scope="col">Image</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -95,8 +95,10 @@ export default function ArtWorkAdd() {
               <td>{art.artistId}</td>
               <td>{art.categoryId}</td>
               <td>{art.price}</td>
-              <td>{art.availability}</td>
-              <td>{art.imageUrl}</td>
+              <td>{art.availability.toString()}</td>
+              {/* <td>{art.image}</td> */}
+              <td>
+                <img src={`data:image/png;base64,${art.image}`} alt="Byte Image" width="100" height="100" /></td>
               <td>
                 <Link to={`/edit/${art.artId}`} state={{ editob: art }}>
                   <button type="button" name="edit" className="btn btn-primary">

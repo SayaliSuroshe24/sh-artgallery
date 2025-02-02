@@ -10,7 +10,6 @@ import Login from './pages/Login';
 import Payment from './pages/Payment';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import ArtworkAdd from './pages/ArtworkAdd';
 import ArtWorkGet from './pages/ArtWorkGet';
 import ArtWorkFormComponent1 from './pages/ArtWorkFormComponent1';
 import ArtWorkEditFormComponent from './pages/ArtWorkEditFormComponent';
@@ -56,9 +55,7 @@ function App() {
         <Route path="/form" element={<ArtWorkFormComponent1></ArtWorkFormComponent1> }></Route>
         <Route path="/edit/:artId" element={<ArtWorkEditFormComponent></ArtWorkEditFormComponent> }></Route>
         {/* <Route path="/edit/:id" element={<ProductEditForm></ProductEditForm> }></Route> */}
-        <Route path="/artwork" element={<ArtworkAdd></ArtworkAdd> }>
-            {/* <Route path="view/:artId" element={<ViewProductDetails></ViewProductDetails>}></Route> */}
-        </Route>
+        
         <Route path="/artworks" element={<ArtWorkGet></ArtWorkGet>} />
         <Route path="/category" element={<Category/>} />
 

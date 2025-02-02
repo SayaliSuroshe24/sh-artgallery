@@ -29,32 +29,34 @@ export default function ArtWorkFormComponent() {
         event.preventDefault(); // Prevent page refresh
 
         // Validate form details
-        if (formdetails.artId === "" || formdetails.title === "" || formdetails.artistId === "" || formdetails.price === "" || formdetails.availability === "" || !formdetails.image) {
+        if ( formdetails.title === "" || formdetails.artistId === "" || formdetails.price === "" || formdetails.availability === "" || !formdetails.image) {
             alert("Please fill all details, including the image!");
             if (!formdetails.image) {
                 setformerrors({ ...formerrors, image: "Please upload an image" });
             }
-            if (formdetails.artId === "" || formdetails.artId.trim().length > 0) {
-                setformerrors({ ...formerrors, artId: "Please fill artId" });
-            }
         } else {
             // Prepare the FormData for image and artwork details
             const formData = new FormData();
-            formData.append('artworkDTO', JSON.stringify({
-                artId: parseInt(formdetails.artId),
+
+            formData.append('image', formdetails.image); // Append the image file
+
+            // Create a Blob from the JSON string
+            const jsonBlob = new Blob([JSON.stringify({
                 title: formdetails.title,
                 artistId: parseInt(formdetails.artistId),
                 price: parseFloat(formdetails.price),
                 availability: formdetails.availability,
-                catId: parseInt(formdetails.catId)
-            }));
-            formData.append('image', formdetails.image); // Append the image file
+                categoryId: parseInt(formdetails.catId)
+            })], { type: "application/json" });
+
+
+            formData.append("artworkDto", jsonBlob, "artworkDto.json");
 
             // Call the service to add artwork
             ArtWorkService.addArtWork(formData)
                 .then((result) => {
                     console.log(result);
-                    navigate("/artwork"); // Redirect to artwork list after submission
+                    navigate("/artworks"); // Redirect to artwork list after submission
                 })
                 .catch((err) => {
                     console.log(err);
@@ -77,13 +79,6 @@ export default function ArtWorkFormComponent() {
     return (
         <div>
             <form onSubmit={submitform}>
-                <div className="form-group">
-                    <label htmlFor="artId">ArtWork Id</label>
-                    <input type="text" className="form-control" id="artId" name='artId'
-                        onChange={handlechange}
-                        value={formdetails.artId} />
-                    <p>{formerrors.artId}</p>
-                </div>
 
                 <div className="form-group">
                     <label htmlFor="title">ArtWork Title</label>

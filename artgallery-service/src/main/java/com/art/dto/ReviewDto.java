@@ -3,11 +3,8 @@ package com.art.dto;
 import java.util.Date;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class ReviewDto {
 	private Long reviewId;
     private Long userId; // FK
