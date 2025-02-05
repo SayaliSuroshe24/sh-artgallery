@@ -13,6 +13,7 @@ public interface CartItemDao extends JpaRepository<CartItem, Long>{
 
 	List<CartItem> findByCart(CartEntity cart);
 
-	Optional<CartItem> findByCartAndArtwork_ArtId(CartEntity cart, Long artworkId);
+	List<CartItem> findByCartAndArtwork_ArtId(CartEntity cart, Long artworkId);
+	 
 
 }

@@ -48,9 +48,23 @@ public class CartController {
         return cartService.addToCart(userId, artworkId, quantity);
     }
     
+//    @DeleteMapping("/user/{userId}/artwork/{artworkId}")
+//    public List<CartItem> removeFromCart(@PathVariable Long userId, @PathVariable Long artworkId) {
+//        return cartService.removeFromCart(userId, artworkId);
+//    }
+    
+    
+    
     @DeleteMapping("/user/{userId}/artwork/{artworkId}")
-    public List<CartItem> removeFromCart(@PathVariable Long userId, @PathVariable Long artworkId) {
-        return cartService.removeFromCart(userId, artworkId);
+    public ResponseEntity<List<CartItem>> removeFromCart(@PathVariable Long userId, @PathVariable Long artworkId) {
+        List<CartItem> updatedCart = cartService.removeFromCart(userId, artworkId);
+        return ResponseEntity.ok(updatedCart);
     }
+    
+    @GetMapping("/user/{userId}")
+    public List<CartItem> getCartListByUserId(@PathVariable Long userId) {
+        return cartService.getCartListByUser(userId);
+    }
+    
     
 }

@@ -26,7 +26,9 @@ import "./styles1.css"; // Import global CSS
 import PaintingsList from './pages/PaintingsList';
 import CartPage from './pages/CartPage';
 import BuyNowPage from './pages/BuyNowPage';
+import BillDetailsPage from './pages/BillDetailsPage';
 import { CartProvider } from './pages/CartContext';
+
 
 
 function App() {
@@ -50,6 +52,7 @@ function App() {
         <Route path="/painting" element={<PaintingsList />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/buy/:id" element={<BuyNowPage />} />
+        <Route path="/BillDetailsPage" element={<BillDetailsPage />} />
         <Route path="/sculpture" element={<Sculpture />} />
         <Route path="/decor" element={<Decor />} />
 

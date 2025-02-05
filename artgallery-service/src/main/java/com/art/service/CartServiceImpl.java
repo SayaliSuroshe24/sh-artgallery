@@ -112,22 +112,53 @@ public class CartServiceImpl implements CartService {
         return cartItemDao.findByCart(cart); // Fetch all items for this cart
 	}
     
-    @Override
-    public List<CartItem> removeFromCart(Long userId, Long artworkId) {
-        // Retrieve the customer's cart
+	/*
+	 * @Override public List<CartItem> removeFromCart(Long userId, Long artworkId) {
+	 * // Retrieve the customer's cart CartEntity cart =
+	 * cartRepository.findByCustomer_UserId(userId); if (cart == null) { throw new
+	 * RuntimeException("Cart not found for customer: " + userId); }
+	 * 
+	 * // Find the cart item by cart ID and artwork ID CartItem cartItem =
+	 * cartItemDao.findByCartAndArtwork_ArtId(cart, artworkId) .orElseThrow(() ->
+	 * new RuntimeException("Item not found in cart"));
+	 * 
+	 * // Remove the CartItem cartItemDao.delete(cartItem);
+	 * 
+	 * // Return the updated list of CartItems for the customer after removal return
+	 * cartItemDao.findByCart(cart); // Fetch all remaining items for this cart }
+	 */
+	
+	
+	
+	@Override
+	public List<CartItem> removeFromCart(Long userId, Long artworkId) {
+	    // Retrieve the customer's cart
+	    CartEntity cart = cartRepository.findByCustomer_UserId(userId);
+	    if (cart == null) {
+	        throw new RuntimeException("Cart not found for customer: " + userId);
+	    }
+
+	    // Find all matching cart items
+	    List<CartItem> cartItems = (List<CartItem>) cartItemDao.findByCartAndArtwork_ArtId(cart, artworkId);
+	    
+	    if (cartItems.isEmpty()) {
+	        throw new RuntimeException("Item not found in cart");
+	    }
+
+	    // Remove only the first (or last) item
+	    CartItem itemToRemove = cartItems.get(0); // Change index if needed (e.g., `get(cartItems.size() - 1)` for newest)
+	    cartItemDao.delete(itemToRemove);
+
+	    // Return the updated cart list
+	    return cartItemDao.findByCart(cart);
+	}
+
+
+	@Override
+	public List<CartItem> getCartListByUser(Long userId) {
+		// Step 1: Retrieve the customer’s cart or create a new one if it doesn't exist
         CartEntity cart = cartRepository.findByCustomer_UserId(userId);
-        if (cart == null) {
-            throw new RuntimeException("Cart not found for customer: " + userId);
-        }
-
-        // Find the cart item by cart ID and artwork ID
-        CartItem cartItem = cartItemDao.findByCartAndArtwork_ArtId(cart, artworkId)
-                                                .orElseThrow(() -> new RuntimeException("Item not found in cart"));
-
-        // Remove the CartItem
-        cartItemDao.delete(cartItem);
-
-        // Return the updated list of CartItems for the customer after removal
-        return cartItemDao.findByCart(cart); // Fetch all remaining items for this cart
-    }
+        // Step 5: Return the updated list of CartItems for the customer
+        return cartItemDao.findByCart(cart); // Fetch all items for this cart
+	}
 }

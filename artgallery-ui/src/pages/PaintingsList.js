@@ -7,7 +7,7 @@ const PaintingsList = () => {
   const [paintings, setPaintings] = useState([]);
   const [loading, setLoading] = useState(true);
   const baseUrl = "http://localhost:8080/";
-  const { addToCart } = useCart();
+  const { addToCart, isPresentInCart } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,10 +29,35 @@ const PaintingsList = () => {
     navigate(`/buy/${painting.artId}`, { state: { painting } });
   };
 
-  const handleAddToCart = (painting) => {
-    addToCart(painting);
-    alert(`Added "${painting.title}" to cart!`);
+  // const handleAddToCart = (painting) => {
+  //   addToCart(painting);
+  //   alert(`Added "${painting.title}" to cart!`);
+
+
+  // };
+
+  const handleAddToCart = async (painting) => {
+    const userId = 1; // Replace with actual user ID from context/authentication
+    const quantity = 1; // Default quantity
+
+    if(!isPresentInCart(painting)) {
+    try {
+      await axios.put(
+        `http://localhost:8080/api/cart/user/${userId}/artwork/${painting.artId}/quantity/${quantity}`
+      );
+      addToCart(painting);
+      alert(`Added "${painting.title}" to cart!`);
+    } catch (error) {
+      console.error("Error adding to cart:", error);
+      alert("Failed to add item to cart. Please try again.");
+    }
+  } else {
+    alert(`Item "${painting.title}" is already present in cart!`);
+  }
   };
+
+
+
 
   if (loading) {
     return <p>Loading paintings...</p>;
