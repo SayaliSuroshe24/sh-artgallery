@@ -1,6 +1,9 @@
 package com.art.dto;
 
 import java.util.Date;
+import java.util.List;
+
+import com.art.pojos.OrderItem;
 
 import lombok.Data;
 
@@ -11,4 +14,6 @@ public class OrderDto {
 	    private Date orderDate;
 	    private double totalAmount;
 	    private String orderStatus;
+	    private List<OrderItemDto> orderItemDto; 
+	    private List<OrderItem> orderItems;
 }

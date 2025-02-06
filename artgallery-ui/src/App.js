@@ -28,6 +28,8 @@ import CartPage from './pages/CartPage';
 import BuyNowPage from './pages/BuyNowPage';
 import BillDetailsPage from './pages/BillDetailsPage';
 import { CartProvider } from './pages/CartContext';
+import OrderDetailsPage from './pages/OrderDetailsPage';
+import MyOrders from './pages/MyOrders';
 
 
 
@@ -53,8 +55,10 @@ function App() {
         <Route path="/cart" element={<CartPage />} />
         <Route path="/buy/:id" element={<BuyNowPage />} />
         <Route path="/BillDetailsPage" element={<BillDetailsPage />} />
+        <Route path="/OrderDetailsPage" element={<OrderDetailsPage />} />
         <Route path="/sculpture" element={<Sculpture />} />
         <Route path="/decor" element={<Decor />} />
+        <Route path="/my-orders/:userId" element={<MyOrders />} />
 
 
         {/* <Route path="/categories" element={<Categories />} /> */}

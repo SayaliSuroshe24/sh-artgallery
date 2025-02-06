@@ -1,33 +1,3 @@
-// import React, { createContext, useContext, useState } from "react";
-
-// const CartContext = createContext();
-
-// export const CartProvider = ({ children }) => {
-//   const [cart, setCart] = useState([]);
-
-
-//   const addToCart = (painting) => {
-//     setCart((prevCart) => [...prevCart, painting]);
-//   };
-
-//   const removeFromCart = (artId) => {
-//     setCart((prevCart) => prevCart.filter((item) => item.artId !== artId));
-//   };
-
-//   const clearCart = () => {
-//     setCart([]);
-//   };
-
-//   return (
-//     <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
-//       {children}
-//     </CartContext.Provider>
-//   );
-// };
-
-// export const useCart = () => useContext(CartContext);
-
-
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
@@ -77,8 +47,22 @@ export const CartProvider = ({ children }) => {
     setCart(removeFirstMatch(cart, artId));
   };
 
+  const clearCartAPI = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/api/cart/user/1`
+      );
+      console.log("All item removed from cart:", response.data);
+  
+    } catch (error) {
+      console.error("Error removing item from cart:", error);
+      alert("Failed to remove item from cart. Please try again.");
+    }
+  };
+  
   const clearCart = () => {
     setCart([]);
+    clearCartAPI();
   };
 
   return (

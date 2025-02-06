@@ -161,4 +161,25 @@ public class CartServiceImpl implements CartService {
         // Step 5: Return the updated list of CartItems for the customer
         return cartItemDao.findByCart(cart); // Fetch all items for this cart
 	}
+
+	@Override
+	public List<CartItem> clearCart(Long userId) {
+	    // Retrieve the customer's cart
+	    CartEntity cart = cartRepository.findByCustomer_UserId(userId);
+	    if (cart == null) {
+	        throw new RuntimeException("Cart not found for customer: " + userId);
+	    }
+
+	    // Find all matching cart items
+	    List<CartItem> cartItems = (List<CartItem>) cartItemDao.findByCart(cart);
+	    
+	    if (cartItems.isEmpty()) {
+	        throw new RuntimeException("Item not found in cart");
+	    }
+
+	    cartItemDao.deleteAll(cartItems);
+
+	    // Return the updated cart list
+	    return cartItemDao.findByCart(cart);
+	}
 }

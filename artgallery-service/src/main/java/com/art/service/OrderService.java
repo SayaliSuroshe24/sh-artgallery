@@ -10,4 +10,5 @@ public interface OrderService {
 	    String deleteOrder(Long orderId);
 	    OrderDto getOrderDetails(Long orderId);
 	    String updateOrder(Long orderId, OrderDto orderDTO);
+		List<OrderDto> getUserOrders(Long userId);
 }

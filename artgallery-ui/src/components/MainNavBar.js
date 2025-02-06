@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap CSS is imported
 import './mainNavStyle.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faBoxOpen } from '@fortawesome/free-solid-svg-icons';
 import { useCart } from '../pages/CartContext';
 
 export default function MainNavBar() {
@@ -40,9 +40,14 @@ export default function MainNavBar() {
             <NavLink className="nav-link" to="/login" activeClassName="active">Login</NavLink>
           </li>
         </ul>
-        <NavLink to="/cart" className="nav-link cart-icon" style={{ marginLeft: "auto" }}>
+        {/* My Orders Icon */}
+        <NavLink to="/my-orders/1" className="nav-link order-icon" style={{ marginLeft: "auto" }}>
+          <FontAwesomeIcon icon={faBoxOpen} size="lg" />
+        </NavLink>
+        {/* Cart Icon */}
+        <NavLink to="/cart" className="nav-link cart-icon" style={{ marginLeft: "10px" }}>
           <FontAwesomeIcon icon={faShoppingCart} size="lg" />
-          <span className="badge badge-danger ml-1" style={{ color: "black" , fontSize: "1.2rem", padding: "5px 10px"}}>{cartCount}</span>
+          <span className="badge badge-danger ml-1" style={{ color: "black", fontSize: "1.2rem", padding: "5px 10px" }}>{cartCount}</span>
         </NavLink>
       </div>
     </nav>

@@ -1,92 +1,3 @@
-// import React, { useState } from "react";
-// import axios from "axios";
-// import { useCart } from "./CartContext";
-// import { useNavigate } from "react-router-dom";
-
-// const CartPage = () => {
-//   const { cart, removeFromCart, clearCart } = useCart();
-//   const navigate = useNavigate();
-//   const [userId] = useState(1); // Replace with actual user ID from context or authentication
-
-//   const updateCartQuantity = async (artworkId, quantity) => {
-//     try {
-//       const response = await axios.put(
-//         `http://localhost:8080/user/${userId}/artwork/${artworkId}/quantity/${quantity}`
-//       );
-//       console.log("Cart updated:", response.data);
-//     } catch (error) {
-//       console.error("Error updating cart:", error);
-//     }
-//   };
-
-//   const handleCheckout = () => {
-//     alert("Proceeding to checkout!");
-//     clearCart();
-//     navigate("/bill-details");
-//   };
-
-//   return (
-//     <div className="container">
-//       <h2 className="my-4">Your Cart</h2>
-//       {cart.length === 0 ? (
-//         <p>Your cart is empty.</p>
-//       ) : (
-//         <>
-//           {cart.map((item) => (
-//             <div key={item.artId} className="card mb-3">
-//               <div className="row g-0">
-//                 <div className="col-md-4">
-//                   <img
-//                     src={`data:image/png;base64,${item.image}`}
-//                     alt={item.title}
-//                     className="img-fluid"
-//                   />
-//                 </div>
-//                 <div className="col-md-8">
-//                   <div className="card-body">
-//                     <h5 className="card-title">{item.title}</h5>
-//                     <p className="card-text">Price: ₹{item.price.toFixed(2)}</p>
-
-//                     <div className="d-flex align-items-center">
-//                       <button
-//                         className="btn btn-outline-secondary me-2"
-//                         onClick={() => updateCartQuantity(item.artId, item.quantity - 1)}
-//                         disabled={item.quantity <= 1}
-//                       >
-//                         -
-//                       </button>
-//                       <span className="px-3">{item.quantity}</span>
-//                       <button
-//                         className="btn btn-outline-secondary ms-2"
-//                         onClick={() => updateCartQuantity(item.artId, item.quantity + 1)}
-//                       >
-//                         +
-//                       </button>
-//                     </div>
-
-//                     <button
-//                       className="btn btn-danger mt-2"
-//                       onClick={() => removeFromCart(item.artId)}
-//                     >
-//                       Remove
-//                     </button>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-//           ))}
-//           <button className="btn btn-primary mt-3" onClick={handleCheckout}>
-//             Proceed to Checkout
-//           </button>
-//         </>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default CartPage;
-
-
 import React, { useState } from "react";
 import axios from "axios";
 import { useCart } from "./CartContext";
@@ -132,8 +43,7 @@ const CartPage = () => {
   
   const handleCheckout = () => {
     alert("Proceeding to checkout!");
-    clearCart();
-    navigate("/BillDetailsPage");
+    navigate("/BillDetailsPage", { state: { items: cart }  });
   };
 
   return (

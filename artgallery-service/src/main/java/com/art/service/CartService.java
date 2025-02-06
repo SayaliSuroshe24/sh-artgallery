@@ -15,5 +15,6 @@ public interface CartService {
 		List<CartItem> addToCart(Long userId, Long artworkId, int quantity);
 		List<CartItem> removeFromCart(Long userId, Long artworkId);
 		List<CartItem> getCartListByUser(Long userId);
+		List<CartItem> clearCart(Long userId);
 
 }
