@@ -7,6 +7,7 @@ const BillDetailsPage = () => {
   const { clearCart } = useCart();
   const navigate = useNavigate();
   const items = location.state?.items || [];
+  const isCart = location.state?.isCart || [];
   console.log(location.state);
   console.log(items);
 
@@ -40,7 +41,9 @@ const BillDetailsPage = () => {
       });
       const result = await response.text();
       console.log("Order saved successfully:", result);
-      clearCart();
+      if(isCart === true) {
+        clearCart();
+      }
       navigate("/OrderDetailsPage", { state: { items, paymentMethod } });
     } catch (error) {
       console.error("Error saving order:", error);

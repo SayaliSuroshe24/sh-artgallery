@@ -115,11 +115,7 @@ export default function ArtWorkAdd() {
                   Delete
                 </button>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <Link to={`/artwork/view/${art.artId}`}>
-                  <button type="button" name="view" className="btn btn-danger">
-                    View
-                  </button>
-                </Link>
+               
               </td>
             </tr>
           ))}

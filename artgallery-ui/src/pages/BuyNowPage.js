@@ -17,7 +17,7 @@ const BuyNowPage = () => {
 
   const handleCheckout = () => {
     const items = [item];
-    navigate("/BillDetailsPage", { state: { items } });
+    navigate("/BillDetailsPage", { state: { items, isCart: false } });
   };
 
   return (

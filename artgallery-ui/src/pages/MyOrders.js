@@ -38,7 +38,7 @@ const MyOrders = () => {
               <h5>Order #{order.orderId}</h5>
               <p>Order Date: {new Date(order.orderDate).toLocaleString()}</p>
               <p>Status: {order.orderStatus}</p>
-              <p>Total Amount: ${order.totalAmount}</p>
+              <p>Total Amount: ₹{order.totalAmount}</p>
               <h6>Order Items:</h6>
               <ul>
                 {order.orderItems.map(item => (

@@ -30,6 +30,8 @@ import BillDetailsPage from './pages/BillDetailsPage';
 import { CartProvider } from './pages/CartContext';
 import OrderDetailsPage from './pages/OrderDetailsPage';
 import MyOrders from './pages/MyOrders';
+import Home1 from './pages/Home1';
+import './pages/style1Home1.css';
 
 
 
@@ -43,7 +45,7 @@ function App() {
       {/* //<MovingImages /> */}
       {/* <ImageSlider /> */}
       <Routes>
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<Home1 />} />
         
         {/* <Route exact path="/" component={Category} />
         <Route path="/painting" component={PaintingPage} />
