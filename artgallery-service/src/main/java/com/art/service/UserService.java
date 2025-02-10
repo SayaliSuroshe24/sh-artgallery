@@ -10,4 +10,6 @@ public interface UserService {
     String deleteUser(Long userId);
    UserDto getUserDetails(Long userId);
     String updateUser(Long userId, UserDto userDTO);
+    String registerUser(UserDto userDto);
+    UserDto loginUser(String email, String password); 
 }

@@ -32,6 +32,8 @@ import OrderDetailsPage from './pages/OrderDetailsPage';
 import MyOrders from './pages/MyOrders';
 import Home1 from './pages/Home1';
 import './pages/style1Home1.css';
+import Register from './pages/Register';
+import './pages/Login.css';
 
 
 
@@ -78,6 +80,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/contactus" element={<ContactUs />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>

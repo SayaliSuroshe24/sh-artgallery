@@ -24,9 +24,7 @@ export default function MainNavBar() {
           <li className="nav-item">
             <NavLink className="nav-link" to="/category" activeClassName="active">Category</NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/artists" activeClassName="active">Artist</NavLink>
-          </li>
+          
           <li className="nav-item">
             <NavLink className="nav-link" to="/artworks" activeClassName="active">Artwork</NavLink>
           </li>
@@ -38,6 +36,9 @@ export default function MainNavBar() {
           </li>
           <li className="nav-item">
             <NavLink className="nav-link" to="/login" activeClassName="active">Login</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/register" activeClassName="active">Register</NavLink>
           </li>
         </ul>
         {/* My Orders Icon */}

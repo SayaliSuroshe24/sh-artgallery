@@ -29,6 +29,8 @@ public class Payment {
     private double amount;
     private String paymentMethod;
     private String status;
+    private String razorpayOrderId; // Razorpay Order ID
+    private String razorpayPaymentId; // Payment ID after success
 	public Long getId() {
 		return id;
 	}

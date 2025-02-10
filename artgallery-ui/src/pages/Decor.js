@@ -29,10 +29,7 @@ const DecorList = () => {
     navigate(`/buy/${decor.artId}`, { state: { decor } });
   };
 
-  // const handleAddToCart = (decor) => {
-  //   addToCart(decor);
-  //   alert(`Added "${decor.title}" to cart!`);
-  // };
+  
 
   const handleAddToCart = async (decor) => {
     const userId = 1; // Replace with actual user ID from context/authentication

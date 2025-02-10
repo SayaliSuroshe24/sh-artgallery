@@ -1,36 +1,41 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
+import "./Login.css";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await axios.post('/api/auth/login', { email, password }); // Adjust the API endpoint as needed
-      alert('Login successful!');
-      // Handle successful login (e.g., redirect or store user info)
+      const response = await axios.post("http://localhost:8080/api/users/login", { email, password });
+
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        setMessage("Login successful!");
+      } else {
+        setMessage("Login failed. Please check your credentials.");
+      }
     } catch (error) {
-      console.error('Login failed', error);
-      alert('Login failed. Please check your credentials.');
+      console.error("Login Error:", error.response?.data || error.message);
+      setMessage(error.response?.data?.message || "An error occurred!");
     }
   };
 
   return (
-    <div className="container mt-4">
-      <h1>Login</h1>
-      <form onSubmit={handleLogin}>
-        <div className="form-group ">
-          <label>Email</label>
-          <input type="email" className="form-control" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input type="password" className="form-control" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
+    <div className="login-container">
+      <div className="login-box">
+        <h2 className="login-title">Login</h2>
+        <form onSubmit={handleLogin}>
+          <input type="email" className="login-input" placeholder="Enter Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <input type="password" className="login-input" placeholder="Enter Password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+          <button type="submit" className="login-button">Login</button>
+        </form>
+        {message && <p className={`login-message ${message === "Login successful!" ? "success" : "error"}`}>{message}</p>}
+      </div>
     </div>
   );
 };
